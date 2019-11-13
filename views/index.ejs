@@ -1,0 +1,24 @@
+<% include _header%>
+
+
+<% if (currentUser) { %>  
+
+  <h1>[ <%= currentUser.name()%>님 ]</h1>
+
+<form action="/board/write" method="post">
+  제목 : <input type="text" name="title"><br>
+  내용 : <textarea name="contents"></textarea><br>
+  글쓴이 : <input name="author" value="<%= currentUser.name() %>" readonly><br>
+  <input type="submit" value="확인">
+</form>
+<% } %>
+
+    <% if (board !== null){
+        for(var i = (board.length-1); i >=0 ; i--) { %>   
+      <h1>제목 : <%=board[i].title%> </h1>
+      <h3>작성자 : <%=board[i].author%> </h3>
+      <h3>내용 : <%=board[i].contents%> </h3>
+      <hr>
+    <%  }} %>
+<% include _footer%>
+
